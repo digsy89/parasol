@@ -96,11 +96,17 @@ class Composer:
       else:
         self.get_except(c)
 
-      print(c, self.current_state())
+      #print(c, self.current_state())
 
     self.process()
-    #print(c, self.current_state())
+
     return "".join(self.result)
+
+  def decompose(self, text):
+    decomposed = hgtk.text.decompose(text)
+    decomposed = decomposed.replace(hgtk.text.DEFAULT_COMPOSE_CODE, '')
+    return decomposed
+
 
 if __name__ == "__main__":
   com = Composer()
