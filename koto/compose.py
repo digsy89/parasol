@@ -96,7 +96,7 @@ class Composer:
       else:
         self.get_except(c)
 
-      #print(c, self.current_state())
+      #print(c, ord(c), code, self.current_state())
 
     self.process()
 

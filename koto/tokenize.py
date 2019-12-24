@@ -22,11 +22,10 @@ class Tokenizer(object):
 
   def tokenize(self, text):
     decomposed = self.composer.decompose(text)
-    print(decomposed)
     tokens = self.spp.encode_as_pieces(decomposed)
-    print(tokens)
     composed = [ self.composer.compose(t) for t in tokens ]
-    print(composed)
+
+    return composed
 
  
 if __name__=="__main__":
