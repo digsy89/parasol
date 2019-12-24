@@ -1,6 +1,6 @@
-import koto
+import parasol
 
-t = koto.Tokenizer(decompose=True)
+t = parasol.Tokenizer(decompose=True)
 
 t.tokenize("안녕하세요")
 t.tokenize("집에 가고 싶다.")

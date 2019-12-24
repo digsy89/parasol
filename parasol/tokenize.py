@@ -17,13 +17,17 @@ class Tokenizer(object):
 
     self.spp = spm.SentencePieceProcessor()
     if decompose:
-      with pkg_resources.path("koto.resources.decomposed", 'bpe.model') as model:
+      with pkg_resources.path("parasol.resources.decomposed", 'bpe.model') as model:
         self.spp.load(model.as_posix())
 
   def tokenize(self, text):
+    #print(text)
     decomposed = self.composer.decompose(text)
+    #print(decomposed)
     tokens = self.spp.encode_as_pieces(decomposed)
+    #print( ' / '.join( [ ''.join(t) for t in tokens ]))
     composed = [ self.composer.compose(t) for t in tokens ]
+    #print( ' / '.join(composed))
 
     return composed
 
