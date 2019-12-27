@@ -7,29 +7,35 @@ except ImportError:
 import sentencepiece as spm
 from . import compose
 
+from parasol.resources import decomposed as decomposed_model
+from parasol.resources import composed as composed_model
+
 class Tokenizer(object):
 
-  def __init__(self, model="bpe", decompose=True):
-    self.model = model
+  def __init__(self, decompose=True):
     self.decompose = decompose
     if decompose:
       self.composer = compose.Composer()
 
     self.spp = spm.SentencePieceProcessor()
-    if decompose:
-      with pkg_resources.path("parasol.resources.decomposed", 'bpe.model') as model:
-        self.spp.load(model.as_posix())
+    model_dir = decomposed_model if decompose else composed_model
+    with pkg_resources.path(model_dir, 'bpe.model') as model:
+      self.spp.load(model.as_posix())
+    
 
   def tokenize(self, text):
     #print(text)
-    decomposed = self.composer.decompose(text)
+    processed_text = text.strip()
+    if self.decompose:
+      processed_text = self.composer.decompose(text)
     #print(decomposed)
-    tokens = self.spp.encode_as_pieces(decomposed)
+    tokens = self.spp.encode_as_pieces(processed_text)
     #print( ' / '.join( [ ''.join(t) for t in tokens ]))
-    composed = [ self.composer.compose(t) for t in tokens ]
+    if self.decompose:
+      tokens = [ self.composer.compose(t) for t in tokens ]
     #print( ' / '.join(composed))
 
-    return composed
+    return tokens
 
  
 if __name__=="__main__":
