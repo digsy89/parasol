@@ -14,8 +14,10 @@ def check_jamo(c):
     Chracter
   """
 
-  if 12393 <= ord(c) <= 12622:
+  # ㄱ ~ ㅎ
+  if 12593 <= ord(c) <= 12622:
     return CONSONANT
+  # ㅏ ~ 
   elif 12623 <= ord(c) <= 12643:
     return VOWEL
   else:
