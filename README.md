@@ -12,7 +12,7 @@ Parasol tokenizes hangul after decomposition.
 
 ## Installation
 
-  pip install parasol-nlp
+    pip install parasol-nlp
 
 ## Usage
 

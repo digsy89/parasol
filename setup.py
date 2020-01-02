@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
   name="parasol-nlp",
-  description="Korean tokenizer with charactor decomposition",
+  description="Korean tokenizer with character decomposition",
   long_description=long_description,
   long_description_content_type="text/markdown",
   keywords="hangul korean nlp tokenizer",
