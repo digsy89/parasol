@@ -10,11 +10,17 @@ Parasol tokenizes hangul after decomposition.
 * __Composed tokens__ : ▁고가 / 도로 / 에 / ▁삐 / 젼 / ㅏ온 / ▁ㅊ / ㅗㄹ / ㅗㄱ / 이 / ㅍ / ▁아마 / ▁이 / ▁도시 / 에서 / ▁유일 / 히 / ▁적응 / ▁못한 / ▁낭만 / 일 / ▁거야
 
 
+
+
 ## Installation
 
     pip install parasol-nlp
 
 ## Usage
+
+### Tokenizer
+
+Use [SentencePiece](https://github.com/google/sentencepiece)'s BPE model as tokenizer and [hgtk](https://github.com/bluedisk/hangul-toolkit) for decomposition.
 
 ```python
 from parasol import Tokenizer
@@ -33,3 +39,29 @@ then
 >>> t2.tokenize("고가도로에 삐져나온 초록잎 아마 이 도시에서 유일히 적응 못한 낭만일 거야")
 ['▁고가', '도로', '에', '▁삐', '져', '나온', '▁초록', '잎', '▁아마', '▁이', '▁도시', '에서', '▁유일', '히', '▁적응', '▁못한', '▁낭만', '일', '▁거야']
 ```
+
+### Composer
+
+Hangul jamo composer
+
+```python
+from parasol import Composer
+
+c = Composer()
+```
+
+then
+
+```python
+>>> c.compose("ㄷㅏㄹㅇㅣ ㄱㅣㅇㅜㄴ ㅂㅏㅁ ㅍㅓㄹㅓㄴㅂㅣㅊㅇㅣ ㅅㅡㅁㅕㄷㅡㄴ ㄱㅗㄹㅁㅗㄱㅇㅡㄹ ㄱㅓㄹㅇㅓㄱㅏㄷㅓㄴ ㄱㅣㄹㅇㅔ")
+'달이 기운 밤 퍼런빛이 스며든 골목을 걸어가던 길에'
+```
+
+but it is not perfect, like..
+
+```python
+>>> c.compose("ㅎㅐㅇㅇㅜㄴㅇㅡㄹ ㅂㅣㄹㅇㅓㅇㅛㅎㅎ")
+'행운을 빌어욯ㅎ'
+```
+
+which of original text is `행운을 빌어요ㅎㅎ`

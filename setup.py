@@ -10,7 +10,7 @@ setuptools.setup(
   long_description_content_type="text/markdown",
   keywords="hangul korean nlp tokenizer",
 
-  version="0.0.1",
+  version="0.0.2",
 
   author="Keeho Ahn",
   author_email="digsy89@gmail.com",
