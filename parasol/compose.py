@@ -100,7 +100,12 @@ class Composer:
 
       #print(c, ord(c), code, self.current_state())
 
-    self.process()
+    try:
+      self.process()
+    # In case of ㅇㅗㅃ==last consonant is only for chosung. 
+    except hgtk.exception.NotHangulException as e:
+      self.process2()
+      self.process()
 
     return "".join(self.result)
 
