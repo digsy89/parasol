@@ -11,12 +11,20 @@ from parasol.resources import decomposed as decomposed_model
 from parasol.resources import composed as composed_model
 
 class Tokenizer(object):
+  """Tokenize korean string
+
+  Params
+  ------
+  decompose: bool
+    If true, decompose -> tokenize -> compose. If false, just tokeinze
+  """
 
   def __init__(self, decompose=True):
     self.decompose = decompose
     if decompose:
       self.composer = compose.Composer()
 
+    # Load sentencepiece model
     self.spp = spm.SentencePieceProcessor()
     model_dir = decomposed_model if decompose else composed_model
     with pkg_resources.path(model_dir, 'bpe.model') as model:
@@ -24,16 +32,23 @@ class Tokenizer(object):
     
 
   def tokenize(self, text):
-    #print(text)
+    """Tokenize given text
+
+    Inputs
+    ------
+    text: str
+      String to be tokenized
+
+    Outputs
+    -------
+    tokens: list(str)
+    """
     processed_text = text.strip()
     if self.decompose:
       processed_text = self.composer.decompose(text)
-    #print(decomposed)
     tokens = self.spp.encode_as_pieces(processed_text)
-    #print( ' / '.join( [ ''.join(t) for t in tokens ]))
     if self.decompose:
       tokens = [ self.composer.compose(t) for t in tokens ]
-    #print( ' / '.join(composed))
 
     return tokens
 
