@@ -16,6 +16,13 @@ Parasol tokenizes hangul after decomposition.
 
     pip install parasol-nlp
 
+## Experiment
+
+The figure shows the results of the perplexity comparison experiment. `with decomposition` is tokenized with charactor decomposition and `no decomposition` is just tokenized.
+Experiment source code is [here](https://colab.research.google.com/drive/1aWNE53R9BO1wT4YilO9i1-hF5gIxxr5W).
+
+![comparison_experiment_figure](https://user-images.githubusercontent.com/5267023/72793967-84d02200-3c7e-11ea-9ba5-ac8fd3a08031.png)
+
 ## Usage
 
 ### Tokenizer
