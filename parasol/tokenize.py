@@ -31,23 +31,31 @@ class Tokenizer(object):
       self.spp.load(model.as_posix())
     
 
-  def tokenize(self, text):
+  def tokenize(self, text, as_id=False):
     """Tokenize given text
 
     Inputs
     ------
     text: str
       String to be tokenized
+    as_id: bool
+      If true, return as id.
 
     Outputs
     -------
-    tokens: list(str)
+    tokens: if as_id==True, list(str) else list(int)
     """
+
     processed_text = text.strip()
     if self.decompose:
       processed_text = self.composer.decompose(text)
-    tokens = self.spp.encode_as_pieces(processed_text)
-    if self.decompose:
+
+    if as_id:
+      tokens = self.spp.encode_as_ids(processed_text)
+    else:
+      tokens = self.spp.encode_as_pieces(processed_text)
+
+    if self.decompose and not as_id:
       tokens = [ self.composer.compose(t) for t in tokens ]
 
     return tokens
