@@ -19,9 +19,9 @@ Parasol tokenizes hangul after decomposition.
 ## Experiment
 
 The figure shows the results of the perplexity comparison experiment. `with decomposition` is tokenized with charactor decomposition and `no decomposition` is just tokenized.
-Experiment source code is [here](https://colab.research.google.com/drive/1aWNE53R9BO1wT4YilO9i1-hF5gIxxr5W).
+Experiment source code is [here](notebooks/Experiment.ipynb).
 
-![comparison_experiment_figure](https://user-images.githubusercontent.com/5267023/72793967-84d02200-3c7e-11ea-9ba5-ac8fd3a08031.png)
+![comparison_experiment_figure](https://user-images.githubusercontent.com/5267023/92320080-b3f2a280-f059-11ea-9ed9-a937a365d889.png)
 
 ## Usage
 
